@@ -11,12 +11,12 @@ ini_set('display_errors', '0');
 // it must be listed here or the request is blocked (credentials are allowed, so
 // wildcard '*' cannot be used).
 // This instance serves the app and API from the SAME origin
-// (portal.panafricanschools.com.ng with the API under /api), so the browser makes
+// (portal.panafricanacademy.com.ng with the API under /api), so the browser makes
 // no cross-origin request and this allowlist is normally never consulted.
 // Kept only for local dev (Vite on :5173) hitting the live API, and as a safety net.
 $allowed_origins = [
     'http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:3000',
-    'https://panafricanschools.com.ng', 'https://www.panafricanschools.com.ng', 'https://portal.panafricanschools.com.ng',
+    'https://panafricanacademy.com.ng', 'https://www.panafricanacademy.com.ng', 'https://portal.panafricanacademy.com.ng',
 ];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if (in_array($origin, $allowed_origins, true)) {

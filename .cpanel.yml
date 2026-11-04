@@ -3,15 +3,15 @@
 # $HOME resolves to the account home (e.g. /home1/rgabfmmy), so paths are portable.
 #
 # Same-origin layout (no separate api subdomain, no CORS):
-#   • App  → portal.panafricanschools.com.ng            Document Root: <HOME>/panafrican-portal
-#   • API  → portal.panafricanschools.com.ng/api/...     served via a symlink to the backend below.
+#   • App  → portal.panafricanacademy.com.ng            Document Root: <HOME>/panafrican-portal
+#   • API  → portal.panafricanacademy.com.ng/api/...     served via a symlink to the backend below.
 #
 # IMPORTANT: files are ONLY copied when you click "Deploy HEAD Commit" in
 #   cPanel → Git Version Control → Manage → Pull or Deploy.
 #
 # ONE-TIME SERVER SETUP:
-#   1. Subdomain portal.panafricanschools.com.ng → Document Root: <HOME>/panafrican-portal
-#   2. MultiPHP Manager → set portal.panafricanschools.com.ng to PHP 8.x (it runs the API via /api)
+#   1. Subdomain portal.panafricanacademy.com.ng → Document Root: <HOME>/panafrican-portal
+#   2. MultiPHP Manager → set portal.panafricanacademy.com.ng to PHP 8.x (it runs the API via /api)
 #   3. After the first deploy, create <HOME>/panafrican-api/config/database.php and
 #      <HOME>/panafrican-api/config/ai.php with real values (git-ignored; the deploy
 #      ships only the .example files and never overwrites your real config).
@@ -30,12 +30,12 @@ deployment:
     # overwriting your real config on redeploys.
     - /bin/cp -Rn backend/config/.   "$HOME/panafrican-api/config/"
 
-    # ── Frontend (React build) → portal.panafricanschools.com.ng docroot ──
+    # ── Frontend (React build) → portal.panafricanacademy.com.ng docroot ──
     - /bin/echo "== Deploying frontend (SPA) to $HOME/panafrican-portal =="
     - /bin/mkdir -p "$HOME/panafrican-portal"
     - /bin/cp -R  learnersforge/dist/. "$HOME/panafrican-portal/"
 
-    # ── Expose the API on the SAME origin at /api → portal.panafricanschools.com.ng/api/v1/... ──
+    # ── Expose the API on the SAME origin at /api → portal.panafricanacademy.com.ng/api/v1/... ──
     # ln -sfn is idempotent (safe to re-run every deploy). PHP resolves the real
     # path, so app/ and config/ stay outside the web root.
     - /bin/ln -sfn "$HOME/panafrican-api/public" "$HOME/panafrican-portal/api"
